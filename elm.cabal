@@ -150,6 +150,10 @@ Executable elm
         Generate.JavaScript.Expression
         Generate.JavaScript.Functions
         Generate.JavaScript.Name
+        Generate.Swift
+        Generate.Swift.Builder
+        Generate.Swift.Expression
+        Generate.Swift.Functions
         Generate.Mode
         Nitpick.Debug
         Nitpick.PatternMatches

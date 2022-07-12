@@ -48,6 +48,7 @@ data Flags =
 
 data Output
   = JS FilePath
+  | Swift FilePath
   | Html FilePath
   | DevNull
 
@@ -116,7 +117,14 @@ runHelp root paths style (Flags debug optimize maybeOutput _ maybeDocs) =
                   do  name <- hasOneMain artifacts
                       builder <- toBuilder root details desiredMode artifacts
                       generate style target (Html.sandwich name builder) (NE.List name [])
+                Just (Swift target) ->
+                  case getNoMains artifacts of
+                    [] ->
+                      do  builder <- toBuilder root details desiredMode artifacts
+                          generate style target builder (Build.getRootNames artifacts)
 
+                    name:names ->
+                      Task.throw (Exit.MakeNonMainFilesIntoJavaScript name names)
 
 
 -- GET INFORMATION
@@ -292,10 +300,11 @@ output =
 
 parseOutput :: String -> Maybe Output
 parseOutput name
-  | isDevNull name      = Just DevNull
-  | hasExt ".html" name = Just (Html name)
-  | hasExt ".js"   name = Just (JS name)
-  | otherwise           = Nothing
+  | isDevNull name       = Just DevNull
+  | hasExt ".html"  name = Just (Html name)
+  | hasExt ".js"    name = Just (JS name)
+  | hasExt ".swift" name = Just (Swift name)
+  | otherwise            = Nothing
 
 
 docsFile :: Parser FilePath

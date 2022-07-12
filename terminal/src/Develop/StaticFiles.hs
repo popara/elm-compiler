@@ -34,13 +34,13 @@ lookup path =
 
 dict :: HM.HashMap FilePath (BS.ByteString, MimeType)
 dict =
-  HM.fromList
-    [ faviconPath  ==> (favicon , "image/x-icon")
-    , elmPath      ==> (elm     , "application/javascript")
-    , cssPath      ==> (css     , "text/css")
-    , codeFontPath ==> (codeFont, "font/ttf")
-    , sansFontPath ==> (sansFont, "font/ttf")
-    ]
+  HM.fromList []
+    -- [ faviconPath  ==> (favicon , "image/x-icon")
+    -- --, elmPath      ==> (elm     , "application/javascript")
+    -- , cssPath      ==> (css     , "text/css")
+    -- , codeFontPath ==> (codeFont, "font/ttf")
+    -- , sansFontPath ==> (sansFont, "font/ttf")
+    -- ]
 
 
 (==>) :: a -> b -> (a,b)
@@ -86,38 +86,38 @@ sansFontPath =
 -- ELM
 
 
-elm :: BS.ByteString
-elm =
-  $(bsToExp =<< runIO Build.buildReactorFrontEnd)
+-- elm :: BS.ByteString
+-- elm =
+--   $(bsToExp =<< runIO Build.buildReactorFrontEnd)
 
 
 
 -- CSS
 
 
-css :: BS.ByteString
-css =
-  $(bsToExp =<< runIO (Build.readAsset "styles.css"))
+-- css :: BS.ByteString
+-- css =
+--   $(bsToExp =<< runIO (Build.readAsset "styles.css"))
 
 
 
--- FONTS
+-- -- FONTS
 
 
-codeFont :: BS.ByteString
-codeFont =
-  $(bsToExp =<< runIO (Build.readAsset "source-code-pro.ttf"))
+-- codeFont :: BS.ByteString
+-- codeFont =
+--   $(bsToExp =<< runIO (Build.readAsset "source-code-pro.ttf"))
 
 
-sansFont :: BS.ByteString
-sansFont =
-  $(bsToExp =<< runIO (Build.readAsset "source-sans-pro.ttf"))
+-- sansFont :: BS.ByteString
+-- sansFont =
+--   $(bsToExp =<< runIO (Build.readAsset "source-sans-pro.ttf"))
 
 
 
--- IMAGES
+-- -- IMAGES
 
 
-favicon :: BS.ByteString
-favicon =
-  $(bsToExp =<< runIO (Build.readAsset "favicon.ico"))
+-- favicon :: BS.ByteString
+-- favicon =
+--   $(bsToExp =<< runIO (Build.readAsset "favicon.ico"))

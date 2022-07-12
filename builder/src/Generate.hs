@@ -27,6 +27,7 @@ import qualified Elm.ModuleName as ModuleName
 import qualified Elm.Package as Pkg
 import qualified File
 import qualified Generate.JavaScript as JS
+import qualified Generate.Swift as Swift
 import qualified Generate.Mode as Mode
 import qualified Nitpick.Debug as Nitpick
 import qualified Reporting.Exit as Exit
@@ -64,7 +65,7 @@ dev root details (Build.Artifacts pkg _ roots modules) =
       let mode = Mode.Dev Nothing
       let graph = objectsToGlobalGraph objects
       let mains = gatherMains pkg objects roots
-      return $ JS.generate mode graph mains
+      return $ Swift.generate mode graph mains
 
 
 prod :: FilePath -> Details.Details -> Build.Artifacts -> Task B.Builder

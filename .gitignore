@@ -2,6 +2,7 @@ elm-stuff
 dist
 cabal-dev
 .cabal-sandbox/
+dist-newstyle/
 cabal.sandbox.config
 .DS_Store
 *~

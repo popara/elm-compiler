@@ -128,11 +128,26 @@ usd =
 {-# NOINLINE reservedNames #-}
 reservedNames :: Set.Set Name.Name
 reservedNames =
-  Set.union jsReservedWords elmReservedWords
+  Set.unions [jsReservedWords, elmReservedWords, swiftReservedWords]
 
 
 jsReservedWords :: Set.Set Name.Name
 jsReservedWords =
+  Set.fromList
+    [ "do", "if", "in"
+    , "NaN", "int", "for", "new", "try", "var", "let"
+    , "null", "true", "eval", "byte", "char", "goto", "long", "case", "else", "this", "void", "with", "enum"
+    , "false", "final", "float", "short", "break", "catch", "throw", "while", "class", "const", "super", "yield"
+    , "double", "native", "throws", "delete", "return", "switch", "typeof", "export", "import", "public", "static"
+    , "boolean", "default", "finally", "extends", "package", "private"
+    , "Infinity", "abstract", "volatile", "function", "continue", "debugger", "function"
+    , "undefined", "arguments", "transient", "interface", "protected"
+    , "instanceof", "implements"
+    , "synchronized"
+    ]
+
+swiftReservedWords :: Set.Set Name.Name
+swiftReservedWords =
   Set.fromList
     [ "do", "if", "in"
     , "NaN", "int", "for", "new", "try", "var", "let"
